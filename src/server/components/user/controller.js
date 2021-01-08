@@ -87,5 +87,4 @@ function logout(req,res){
     res.send({response : 'logout success'})
 }
 
-
 module.exports = {login,logout,RegisterUser,deleteAcountUser,updateInformationAccountUser}
