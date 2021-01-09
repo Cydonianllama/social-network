@@ -167,3 +167,61 @@ create table contacts(
     foreign key (idCurrentUser) references user_(idUser),
     foreign key (categoryContact) references categorycontact(idCategory)
 );
+
+
+/* target table */
+
+create table Targets(
+	idTarget int not null primary key auto_increment,
+    name_ varchar(50) not null
+);
+
+insert into targets(name_) values('programmer');
+insert into targets(name_) values('Variety');
+insert into targets(name_) values('UXUIdesigner');
+insert into targets(name_) values('productDesigner');
+insert into targets(name_) values('Architect');
+insert into targets(name_) values('Music');
+insert into targets(name_) values('VirtualSocialActivities');
+
+/* table ads */
+create table ads(
+	idAd int not null primary key auto_increment,
+    idUser int not null,
+    text_ varchar(550) default null,
+    urlVideo1 varchar(200) default null,
+    urlImage1 varchar(200) default null,
+    urlImage2 varchar(200) default null,
+    foreign key(idUser) references user_(idUser)
+);
+
+/* table ads target */
+create table ads(
+	idAd int not null primary key auto_increment,
+    idUser int not null,
+    text_ varchar(550) default null,
+    urlVideo1 varchar(200) default null,
+    urlImage1 varchar(200) default null,
+    urlImage2 varchar(200) default null,
+    foreign key(idUser) references user_(idUser)
+);
+
+/* table ad target*/
+create table adTarget(
+	idAdTarget int not null primary key auto_increment,
+    idTarget int not null,
+    idAd int not null,
+    foreign key(idTarget) references targets(idTarget),
+    foreign key(idAd) references ads(idAd)
+);
+
+/* table enterprise */
+    /* change the rol of the common user*/
+create table enterprise(
+	idEnterprise int not null primary key auto_increment,
+    idUser int not null,
+    nameEnterprise varchar(50) default null,
+    contactNumber varchar(50) default null,
+    emailContact varchar(50) default null,
+    foreign key(idUser) references user_(idUser)
+);

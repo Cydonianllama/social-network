@@ -66,9 +66,11 @@ const deletePost = (req,res) =>{
     }else response.error(res,'dont detect any param required for this action')
 }
 const createPost = (req,res) =>{
+    if (req.user === null || req.user === undefined) response.error(res,'user dont finded, authorizise denied')
     if(req.body){
-        let postData = req.body
-        let query = ``
+        let {idUser} = req.user 
+        let {text_,idCategory1,idCategory2,idCategory3} = req.body
+        let query = `insert into post(idUser,text_,idCategory1,idCategory2,idCategory3) values(${idUser},'${text_}',${idCategory1},${idCategory2},${idCategory3});`
         model.createPost(query, (error, result, fieldset) => {
             if (error) response.error(res,error)
             else {
@@ -76,7 +78,7 @@ const createPost = (req,res) =>{
                 response.success(res,responseQuery)
             }
         })
-    }else response.error(res,'')
+    }else response.error(res,'error in creation')
 }
 module.exports = { 
     getPost, 
