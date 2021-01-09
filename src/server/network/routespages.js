@@ -25,11 +25,11 @@ router.get('/home', (req, res) => {
 })
 
 router.get('/profile',(req,res)=>{
-    //console.log(req.user.nickname)
-    //res.send({msg : 'hola'})
-    let nickname = req.user.nickname
-    console.log('nickname',nickname)
-    if (nickname) res.redirect(`/profile/${nickname}`)
+    if(req.user){
+        let nickname = req.user.nickname
+        console.log('nickname', nickname)
+        if (nickname) res.redirect(`/profile/${nickname}`) 
+    }else res.send({msg : 'no hay nickname'})
    
 })
 
@@ -37,6 +37,10 @@ router.get('/profile/:username',(req,res)=>{
     if (req.isAuthenticated()) res.render('pages/profile')
     else res.render('pages/login')
     
+})
+
+router.get('/test',(req,res)=>{
+    res.render('pages/pruebas')
 })
 
 module.exports = router

@@ -1,3 +1,4 @@
+/* table user- */
 create table user_(
     idUser int not null primary key auto_increment,
     dateCreation date,
@@ -5,7 +6,9 @@ create table user_(
     nickname varchar(50),
     description_ varchar(120)
 );
+alter table user_ modify nickname varchar(50) not null unique key;
 
+/*table inforamation_user*/
 create table information_user(
 	nickname varchar(50) not null primary key,
     fullname varchar(100),
@@ -14,18 +17,13 @@ create table information_user(
     foreign key(nickname) references user_(nickname)
 );
 
-alter table user_ modify nickname varchar(50) not null unique key;
-
 select * from information_user;
-
 select * from user_;
-
 insert into user_(nickname,password_,description_,dateCreation) values('elbromas','5402468','soy un bromista por naturaleza','1999/02/12');
-
 update user_ set nickname = 'elcojudo' where idUser = 1 AND nickname = 'elbromas';
-
 delete from user_ where idUser = 1;
 
+/* procedure for create user */
 CREATE PROCEDURE `createUser`(
     dateCreation date,
     password_ varchar(100),
@@ -48,6 +46,7 @@ END
 
 call createuser('2020,02,12','8484','careculo','esta es una descripcion para la mierda','alberto fujimori','1999,02,12');
 
+/* procedure for delete user */
 CREATE PROCEDURE `deleteUser`(
 	nickname varchar(50)
 )
@@ -60,6 +59,7 @@ call deleteUser('nickname');
 
 SET SQL_SAFE_UPDATES = 0; /*safe delete disabled*/
 
+/* if name is used return 1 else 0 */
 CREATE FUNCTION `isNicknameUsed`(nickname varchar(50)) 
 RETURNS int(11)
 BEGIN
@@ -72,3 +72,98 @@ BEGIN
     END IF;
     
 END
+
+/*****************************************************************************************/
+
+/* category post */
+create table categoryPost(
+	idCategory int not null primary key auto_increment,
+    nameCategory varchar(120) not null
+);
+
+insert into categoryPost(nameCategory) values('Math');
+insert into categoryPost(nameCategory) values('Programming');
+insert into categoryPost(nameCategory) values('Data Structures');
+insert into categoryPost(nameCategory) values('Design Patterns');
+insert into categoryPost(nameCategory) values('Clean Code');
+insert into categoryPost(nameCategory) values('Tips code');
+insert into categoryPost(nameCategory) values('Dynmic programing');
+insert into categoryPost(nameCategory) values('javascript');
+
+select * from categoryPost;
+
+/* post section */
+create table post(
+	idPost int not null primary key auto_increment,
+    idRepost int default null,
+    idUser int not null ,
+    text_  varchar(650) ,
+    imageURL1 varchar(120),
+    imageURL2 varchar(120),
+    imageURL3 varchar(120),
+    imageURL4 varchar(120),
+    videoURL1 varchar(120),
+    idGifURL varchar(120),
+    datePost date,
+	idCategory1 int ,
+    idCategory2 int ,
+    idCategory3 int ,
+    foreign key (idCategory1) references categoryPost(idCategory),
+    foreign key (idCategory2) references categoryPost(idCategory),
+    foreign key (idCategory3) references categoryPost(idCategory),
+    foreign key (idUser) references user_(idUser)
+);
+alter table post add foreign key(idRepost) references post(idPost);
+
+/* comment post */
+create table commentPost(
+	idComment int not null primary key auto_increment,
+    idRecomment int default null ,
+    dateComment date,
+    idCurrentComment int,/*if this is a node comment*/
+    text_ varchar(650),
+    idUserComment int not null,
+    idPost int not null,
+    gifURL varchar(120),
+	ImageURL1 varchar(120),
+    foreign key (idPost) references post(idPost),
+    foreign key (idUserComment) references user_(idUser),
+    foreign key (idCurrentComment) references commentPost(idComment),
+    foreign key (idRecomment) references commentPost(idComment)
+);
+
+/* like */
+create table like_(
+	idLike int not null primary key auto_increment,
+    idComment int default null,
+    idPost int default null,
+    idUserLike int not null,
+    foreign key (idPost) references post(idPost),
+    foreign key (idUserLike) references user_(idUser),
+    foreign key (idComment) references commentPost(idComment)
+);
+
+/*category contact*/
+create table categoryContact (
+	idCategory int not null primary key auto_increment,
+    nameCategory varchar(50) not null
+);
+
+insert into categoryContact(nameCategory) values('friend');
+insert into categoryContact(nameCategory) values('work friend');
+insert into categoryContact(nameCategory) values('relationship');
+insert into categoryContact(nameCategory) values('family');
+insert into categoryContact(nameCategory) values('other');
+
+select * from categoryContact;
+
+/* table contacts  */
+create table contacts(
+	id_ int not null primary key,
+	idContact int not null,
+    idCurrentUser int not null,
+    dateOfAdd date ,
+    categoryContact int,
+    foreign key (idCurrentUser) references user_(idUser),
+    foreign key (categoryContact) references categorycontact(idCategory)
+);
