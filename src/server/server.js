@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 
 app.use('/controller',express.static(path.resolve('src','client','controllers')))
-app.use('/stylse',express.static(path.resolve('src','client','styles')))
+app.use('/styles',express.static(path.resolve('src','client','styles')))
 
 app.set('views', path.resolve('src', 'server','views'))
 app.set('view engine', 'ejs')

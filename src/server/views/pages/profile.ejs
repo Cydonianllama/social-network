@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/profile.css">
     <title>Profile</title>
 </head>
 <body>
-    <h1>Profile</h1>
-    <p>this is you profiel</p>
-    <a href="/home">home</a>
-    <a href="/logout">logout</a>
-    <div>
-        <textarea id = "text-post"name="text_" cols="30" rows="5"></textarea>
-        <div class = "actions-post">
-            <button>image</button>
-            <button>gif</button>
-            <button>video</button>
-        </div>
-        <div class = "add-categories-container">
-            <select name="categories" id="">
-                <option value="selectionar">seleccionar</option>
-                <option value="">a</option>
-            </select>
-        </div>
-        <button id = "btn-create-post" >create post</button>
-    </div>
-    <div id = "container-posts">
+    <main class = "continer">
 
-    </div>
+        <header class = "header">
+            <a class = "header__home"href="/home">
+                Home
+            </a>
+        </header>
+
+
+        <div class = "profile-info">
+            <div class = "profile-info__avatar">
+                
+                <span class = "profile-info__avatar__state">state user</span>
+            </div>
+            <a class = "profile-info__logout"href="/logout">logout</a>
+        </div>
+
+        
+        <div class="form-post">
+            <textarea class="form-post__textarea" id="text-post" name="text_" cols="30" rows="5"></textarea>
+            <div class="actions-post form-post__actions">
+                <button class="form-post__actions__button">image</button>
+                <button class="form-post__actions__button">gif</button>
+                <button class="form-post__actions__button">video</button>
+            </div>
+            <div class="form-post__container">
+                <select class = "form-post__container__select-category"name="categories" id="">
+                    <option value="selectionar">seleccionar</option>
+                    <option value="">a</option>
+                </select>
+            </div>
+            <button class = "form-post__button-create"id="btn-create-post">create post</button>
+        </div>
+
+        <div id="container-posts" class = "posts">
+        
+        </div>
+    </main>
     <script src = "/controller/profile.js"></script>
 </body>
 </html>

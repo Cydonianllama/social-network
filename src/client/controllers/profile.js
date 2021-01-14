@@ -16,11 +16,11 @@ function updatePost({text_,idPost}){
 
 function processCardPost({text_}){
     let card = `
-        <div class = "container-post">
+        <div class = "posts__post">
             <p>${text_}</p>
-            <div class = "action-post">
-                <button>like</button>
-                <button>comment</button>
+            <div class = "posts__post__actions">
+                <button class = "posts__post__actions__button">like</button>
+                <button class = "posts__post__actions__button">comment</button>
             </div>
         </div>
     `

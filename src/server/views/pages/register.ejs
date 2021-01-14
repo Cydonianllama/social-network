@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/register.css">
     <title>Register</title>
 </head>
 <body>
-    <form action = "POST">
-        <input id = "input-fullname" type="fullname" placeholder="fullname" required>
-        <input id = "input-birthdate"type="date" placeholder="dd-mm-yyyy"  min="1990-01-01" max="2008-01-01" required>
-        <textarea id ="text-area-description" name="description" cols="30" rows="5" maxlength="200"></textarea>
-        <input id = "input-username" type="text" name="username" placehoder="username" required>
-        <input id = "input-password" type="password" name="password-1" placeholder="password" required>
-        <input type="password" name="password-2" placeholder="confirm password" required>
-        <button id = "btn-register" type="submit" > register </button>
-        <a href="/login">have a account ?</a>
-    </form>
+    <main class = "container">
+        <fieldset class = "fieldest-register">
+            <legend>Register</legend>
+            <form action="POST" class="register">
+                <input class = "register__input"id="input-fullname" type="fullname" placeholder="fullname" required>
+                <input id="input-birthdate" type="date" placeholder="dd-mm-yyyy" min="1990-01-01" max="2008-01-01" required>
+                <textarea id="text-area-description" name="description" cols="30" rows="5" maxlength="200"></textarea>
+                <input class = "register__input" id="input-username" type="text" name="username" placeholder="username" required>
+                <input class = "register__input" id="input-password" type="password" name="password-1" placeholder="password" required>
+                <input class = "register__input" type="password" name="password-2" placeholder="confirm password" required>
+                <button class = "register__btn-regiter"id="btn-register" type="submit"> register </button>
+                <a href="/login">have a account ?</a>
+            </form>
+        </fieldset>
+        
+    </main>
     <script src="/controller/register.js"></script>
 </body>
 </html>

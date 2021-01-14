@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/landing.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>landing page</h1>
-    <a href="/login">login</a>
-    <a href="/register">register</a>
+    <main class = "container">
+        <header class = "header-landing">
+            <div class = "header-landing__logo">
+                Logo
+            </div>
+            <div class = "header-landing__options">
+                <a class = "header-landing__options__register"href="/register">register</a>
+            </div>
+        </header>
+        <div class="hero">
+            <div class="hero__highlight">
+                <p class="hero_highlight_p">
+                    somos la red social del pueblo, aca escuchamos chacalon diariamente
+                </p>
+                <a class = "hero__highlight__calltoaction"href="/register">registrame</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

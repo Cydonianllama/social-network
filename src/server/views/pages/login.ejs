@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/login.css">
     <title>Login</title>
 </head>
 <body>
-    <form action = '/login' method="POST">
-        <input id="input-username" type="text" name="username" placeholder="username" required>
-        <input id="input-password"type="password" name="password" placeholder="password" required>
-        <button id = "btn-login"> Login</button>
-        <a href="/register">still dont have a account</a>
-    </form>
+    <main class = "container">
+        <fieldset>
+            <legend>LOGIN</legend>
+            <div class = "image-login">
+
+            </div>
+            <form class = "form-login"action='/login' method="POST">
+                <input class = "form-login__input" id="input-username" type="text" name="username" placeholder="username" required>
+                <input class = "form-login__input"  id="input-password" type="password" name="password" placeholder="password" required>
+                <button class = "form-login__button"id="btn-login"> Login</button>
+                <a href="/register">still dont have a account</a>
+            </form>
+        </fieldset>
+    </main>
     <script src="/controller/login.js"></script>
 </body>
 </html>
